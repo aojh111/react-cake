@@ -68,7 +68,9 @@ async function main(argv) {
     );
   }
 
-  console.log(await exec(['git', 'push', muiOrgRemote.name, tag].join(' ')));
+  // eslint-disable-next-line no-console -- verbose logging
+  console.log(muiOrgRemote.name);
+  await exec(['git', 'push', muiOrgRemote.name, tag].join(' '));
 
   // eslint-disable-next-line no-console -- verbose logging
   console.log(

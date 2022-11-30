@@ -52,6 +52,7 @@ async function main(argv) {
   const rootWorkspace = getWorkspaceRoot();
   const rootWorkspaceManifest = await fse.readJSON(path.join(rootWorkspace, 'package.json'));
   console.log(rootWorkspace)
+  console.log(rootWorkspaceManifest)
   const tag = `v${rootWorkspaceManifest.version}`;
   const message = `Version ${rootWorkspaceManifest.version}`;
   console.log(tag)

@@ -38,7 +38,6 @@ jobs:
       # double run to check if cleanup works
       - run: yarn release:build
       - run: yarn validate-declarations
-      - run: yarn release:publish
       - name: yarn release:cake-tag
         run: |
           git remote -v

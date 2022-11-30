@@ -43,5 +43,5 @@ jobs:
       - name: yarn release:cake-tag
         run: |
           git remote -v
-          yarn release:tag --dryRun
+          yarn release:cake-tag --dryRun
       - run: yarn release:cake-changelog

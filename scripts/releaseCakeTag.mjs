@@ -56,6 +56,7 @@ async function main(argv) {
   const message = `Version ${rootWorkspaceManifest.version}`;
   console.log(tag)
   await exec(['git', 'tag', '-a', tag, '-m', `"${message}"`].join(' '), (error, stdout, stderr) => {
+    console.log('============================')
     if (error) {
       console.error(`exec error: ${error}`);
       return;

@@ -55,7 +55,14 @@ async function main(argv) {
   const tag = `v${rootWorkspaceManifest.version}`;
   const message = `Version ${rootWorkspaceManifest.version}`;
 
-  await exec(['git', 'tag', '-a', tag, '-m', `"${message}"`].join(' '));
+  await exec(['git', 'tag', '-a', tag, '-m', `"${message}"`].join(' '), (error, stdout, stderr) => {
+    if (error) {
+      console.error(`exec error: ${error}`);
+      return;
+    }
+    console.log(`stdout: ${stdout}`);
+    console.error(`stderr: ${stderr}`);
+  });
   // eslint-disable-next-line no-console -- verbose logging
   console.log(`Created tag '${tag}'. To remove enter 'git tag -d ${tag}'`);
 
@@ -68,9 +75,14 @@ async function main(argv) {
     );
   }
 
-  // eslint-disable-next-line no-console -- verbose logging
-  console.log(muiOrgRemote.name);
-  await exec(['git', 'push', muiOrgRemote.name, tag].join(' '));
+  await exec(['git', 'push', muiOrgRemote.name, tag].join(' '), (error, stdout, stderr) => {
+    if (error) {
+      console.error(`exec error111: ${error}`);
+      return;
+    }
+    console.log(`stdout111: ${stdout}`);
+    console.error(`stderr111: ${stderr}`);
+  });
 
   // eslint-disable-next-line no-console -- verbose logging
   console.log(

@@ -51,7 +51,6 @@ async function main(argv) {
 
   const rootWorkspace = getWorkspaceRoot();
   const rootWorkspaceManifest = await fse.readJSON(path.join(rootWorkspace, 'package.json'));
-  console.log(rootWorkspace)
   console.log(rootWorkspaceManifest)
   const tag = `v${rootWorkspaceManifest.version}`;
   const message = `Version ${rootWorkspaceManifest.version}`;
@@ -68,6 +67,7 @@ async function main(argv) {
   console.log(`Created tag '${tag}'. To remove enter 'git tag -d ${tag}'`);
 
   const muiOrgRemote = await findMuiOrgRemote();
+  console.log(muiOrgRemote)
   if (muiOrgRemote === undefined) {
     throw new TypeError(
       'Unable to find the upstream remote. It should be a remote pointing to "mui/material-ui". ' +

@@ -48,6 +48,7 @@ async function findMuiOrgRemote() {
 
 async function main(argv) {
   const { dryRun } = argv;
+  console.log(dryRun)
 
   const exec = dryRun ? execDry : execActual;
 
@@ -58,9 +59,9 @@ async function main(argv) {
   console.log(tag)
   const util = require('node:util');
   const exec1 = util.promisify(require('node:child_process').exec);
-  const { stdout, stderr } = await exec1(['git', 'tag', '-a', tag, '-m', `"${message}"`].join(' '));
+  const { stdout } = await exec(['git', 'tag', '-a', tag, '-m', `"${message}"`].join(' '));
   console.log('stdout:', stdout);
-  console.error('stderr:', stderr);
+  // console.error('stderr:', stderr);
   // eslint-disable-next-line no-console -- verbose logging
   console.log(`Created tag '${tag}'. To remove enter 'git tag -d ${tag}'`);
 

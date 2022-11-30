@@ -40,6 +40,7 @@ async function findMuiOrgRemote() {
       // - git@github.com:mui/material-ui.git
       // but not:
       // - git@github.com:mui/material-ui-docs.git
+      console.log(remote.url)
       return /aojh111\/react-cake(\.git)?$/.test(remote.url) && remote.method === '(push)';
     });
 }

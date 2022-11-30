@@ -27,6 +27,7 @@ function execDry(command, options) {
 async function findMuiOrgRemote() {
   const { stdout } = await execActual(['git', 'remote', '-v'].join(' '));
   const remoteLines = stdout.trim().split(/\r?\n/);
+  console.log(remoteLines)
 
   return remoteLines
     .map((remoteLine) => {
@@ -67,7 +68,6 @@ async function main(argv) {
   console.log(`Created tag '${tag}'. To remove enter 'git tag -d ${tag}'`);
 
   const muiOrgRemote = await findMuiOrgRemote();
-  console.log(muiOrgRemote)
   if (muiOrgRemote === undefined) {
     throw new TypeError(
       'Unable to find the upstream remote. It should be a remote pointing to "mui/material-ui". ' +

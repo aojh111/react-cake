@@ -5,6 +5,7 @@ import { promisify } from 'util';
 import yargs from 'yargs';
 import { getWorkspaceRoot } from './utils.mjs';
 
+
 /**
  * Only directly call it with side-effect free commands.
  * Otherwise use the `exec` that's considering whether the context is supposed to be "dry" i.e. have no side-effects.
@@ -55,7 +56,9 @@ async function main(argv) {
   const tag = `v${rootWorkspaceManifest.version}`;
   const message = `Version ${rootWorkspaceManifest.version}`;
   console.log(tag)
-  const { stdout, stderr } = await exec(['git', 'tag', '-a', tag, '-m', `"${message}"`].join(' '));
+  const util = require('node:util');
+  const exec1 = util.promisify(require('node:child_process').exec);
+  const { stdout, stderr } = await exec1(['git', 'tag', '-a', tag, '-m', `"${message}"`].join(' '));
   console.log('stdout:', stdout);
   console.error('stderr:', stderr);
   // eslint-disable-next-line no-console -- verbose logging

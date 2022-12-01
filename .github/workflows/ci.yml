@@ -8,7 +8,9 @@ on:
       - 'renovate/**'
   pull_request:
 
-permissions: {}
+# permissions: {}
+permissions:
+  contents: write
 
 jobs:
   # Tests dev-only scripts across all supported dev environments
@@ -46,8 +48,6 @@ jobs:
         run: |
           git remote -v
           yarn release:cake-tag --dryRun
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: yarn release:cake-changelog
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

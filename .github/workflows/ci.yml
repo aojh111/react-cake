@@ -41,11 +41,11 @@ jobs:
       # - run: yarn release:build
       # double run to check if cleanup works
       # - run: yarn release:build
+      - run: yarn release:cake-changelog
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: yarn validate-declarations
       - name: yarn release:cake-tag
         run: |
           git remote -v
           yarn release:cake-tag --dryRun
-      - run: yarn release:cake-changelog
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

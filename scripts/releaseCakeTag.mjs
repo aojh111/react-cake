@@ -57,8 +57,8 @@ async function main(argv) {
   const tag = `v${rootWorkspaceManifest.version}`;
   const message = `Version ${rootWorkspaceManifest.version}`;
   console.log(tag)
-  const { stdout } = await exec(['git', 'tag', '-a', tag, '-m', `"${message}"`].join(' '));
-  console.log('stdout:', stdout);
+  const { stdout1 } = await exec(['git', 'tag', '-a', tag, '-m', `"${message}"`].join(' '));
+  console.log('stdout:', stdout1);
   // console.error('stderr:', stderr);
   // eslint-disable-next-line no-console -- verbose logging
   console.log(`Created tag '${tag}'. To remove enter 'git tag -d ${tag}'`);

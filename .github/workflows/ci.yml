@@ -38,7 +38,6 @@ jobs:
         run: |
           git config user.name "aojh111"
           git config user.email "aojiahao111@gmail.com"
-          git config user.password "ajh18279523350"
       # - run: yarn release:build
       # double run to check if cleanup works
       # - run: yarn release:build

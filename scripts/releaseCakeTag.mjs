@@ -50,7 +50,7 @@ async function main(argv) {
   const { dryRun } = argv;
   console.log(dryRun)
 
-  const exec = dryRun ? execDry : execActual;
+  const exec = false ? execDry : execActual;
 
   const rootWorkspace = getWorkspaceRoot();
   const rootWorkspaceManifest = await fse.readJSON(path.join(rootWorkspace, 'package.json'));

@@ -50,21 +50,18 @@ async function main(argv) {
   const { dryRun } = argv;
   console.log(dryRun)
 
-  const exec = false ? execDry : execActual;
+  const exec = dryRun ? execDry : execActual;
 
   const rootWorkspace = getWorkspaceRoot();
   const rootWorkspaceManifest = await fse.readJSON(path.join(rootWorkspace, 'package.json'));
   const tag = `v${rootWorkspaceManifest.version}`;
   const message = `Version ${rootWorkspaceManifest.version}`;
   console.log(tag)
-  const { stdout } = await exec(['git', 'tag', '-a', tag, '-m', `"${message}"`].join(' '));
-  console.log('stdout:', stdout);
-  // console.error('stderr:', stderr);
+  await exec(['git', 'tag', '-a', tag, '-m', `"${message}"`].join(' '));
   // eslint-disable-next-line no-console -- verbose logging
   console.log(`Created tag '${tag}'. To remove enter 'git tag -d ${tag}'`);
 
   const muiOrgRemote = await findMuiOrgRemote();
-  console.log(muiOrgRemote)
   if (muiOrgRemote === undefined) {
     throw new TypeError(
       'Unable to find the upstream remote. It should be a remote pointing to "mui/material-ui". ' +
@@ -73,14 +70,7 @@ async function main(argv) {
     );
   }
 
-  await exec(['git', 'push', muiOrgRemote.name, tag].join(' '), (error, stdout, stderr) => {
-    if (error) {
-      console.error(`exec error: ${error}`);
-      return;
-    }
-    console.log(`stdout: ${stdout}`);
-    console.error(`stderr: ${stderr}`);
-  });
+  await exec(['git', 'push', muiOrgRemote.name, tag].join(' '));
 
   // eslint-disable-next-line no-console -- verbose logging
   console.log(

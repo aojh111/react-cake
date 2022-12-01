@@ -75,11 +75,11 @@ async function main(argv) {
 
   await exec(['git', 'push', muiOrgRemote.name, tag].join(' '), (error, stdout, stderr) => {
     if (error) {
-      console.error(`exec error111: ${error}`);
+      console.error(`exec error: ${error}`);
       return;
     }
-    console.log(`stdout111: ${stdout}`);
-    console.error(`stderr111: ${stderr}`);
+    console.log(`stdout: ${stdout}`);
+    console.error(`stderr: ${stderr}`);
   });
 
   // eslint-disable-next-line no-console -- verbose logging

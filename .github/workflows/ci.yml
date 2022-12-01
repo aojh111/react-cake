@@ -46,8 +46,8 @@ jobs:
         run: |
           git remote -v
           yarn release:cake-tag --dryRun
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: yarn release:cake-changelog
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

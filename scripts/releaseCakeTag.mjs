@@ -50,15 +50,15 @@ async function main(argv) {
   const { dryRun } = argv;
   console.log(dryRun)
 
-  const exec = dryRun ? execDry : execActual;
+  const exec = false ? execDry : execActual;
 
   const rootWorkspace = getWorkspaceRoot();
   const rootWorkspaceManifest = await fse.readJSON(path.join(rootWorkspace, 'package.json'));
   const tag = `v${rootWorkspaceManifest.version}`;
   const message = `Version ${rootWorkspaceManifest.version}`;
   console.log(tag)
-  const { stdout1 } = await exec(['git', 'tag', '-a', tag, '-m', `"${message}"`].join(' '));
-  console.log('stdout:', stdout1);
+  const { stdout } = await exec(['git', 'tag', '-a', tag, '-m', `"${message}"`].join(' '));
+  console.log('stdout:', stdout);
   // console.error('stderr:', stderr);
   // eslint-disable-next-line no-console -- verbose logging
   console.log(`Created tag '${tag}'. To remove enter 'git tag -d ${tag}'`);

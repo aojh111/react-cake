@@ -47,7 +47,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: "App-Artifacts"
-          path: build/*
+          path: /home/runner/work/react-cake/react-cake/packages/mui-base/build/*
       - run: yarn release:cake-changelog
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

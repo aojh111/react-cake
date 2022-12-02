@@ -46,12 +46,12 @@ jobs:
       - name: Archive Artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: "App-Artifacts"
+          name: "Material-Artifacts"
           path: /home/runner/work/react-cake/react-cake/packages/mui-material/build/*
       - name: Archive Artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: "App-Artifacts"
+          name: "System-Artifacts"
           path: /home/runner/work/react-cake/react-cake/packages/mui-system/build/*
       - run: yarn release:cake-changelog
         env:

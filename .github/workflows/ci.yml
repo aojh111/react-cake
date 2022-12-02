@@ -23,7 +23,7 @@ jobs:
         os: [macos-latest, windows-latest, ubuntu-latest]
     steps:
       - run: echo "${{ github.actor }}"
-      - uses: actions/checkout@v5.10.14 # v3.1.0
+      - uses: actions/checkout@3606a588d1dbee14389272b35ae661f8802df90b # v3.1.0
         with:
           # fetch all tags which are required for `yarn release:changelog`
           fetch-depth: 0

@@ -23,7 +23,7 @@ jobs:
         os: [macos-latest, windows-latest, ubuntu-latest]
     steps:
       - run: echo "${{ github.actor }}"
-      - uses: actions/checkout@3606a588d1dbee14389272b35ae661f8802df90b # v3.1.0
+      - uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
         with:
           # fetch all tags which are required for `yarn release:changelog`
           fetch-depth: 0
@@ -43,6 +43,11 @@ jobs:
       - run: yarn release:build
       # double run to check if cleanup works
       - run: yarn release:build
+      - name: Archive Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: "App-Artifacts"
+          path: artifacts/*
       - run: yarn release:cake-changelog
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
